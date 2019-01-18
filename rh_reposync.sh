@@ -17,6 +17,8 @@ typeset RSYNC_OPTS="-l -d "
 NEWEST_ONLY=${NEWEST_ONLY:-true}
 [ "$NEWEST_ONLY" = true ] && RSYNC_OPTS="${RSYNC_OPTS} -n "
 
+typeset SYNC_DATE=${SYNC_DATE:-$(date +%Y%m%d)}
+typeset REPO_FOLDER="/var/www/html/${SYNC_DATE}"
 
 # Uncomment to configure subscription-manager proxy use
 [ ! -z $PROXY_HOST ] && PROXY=" --server.proxy_hostname='${PROXY_HOST}'"
@@ -37,10 +39,6 @@ yum -y --setopt="tsflags=nodocs" install \
   yum-utils createrepo && \
   yum clean all && \
   rm -rf /var/cache/yum/*
-
-SYNC_DATE="$(date +%Y%m%d)"
-
-REPO_FOLDER="/var/www/html/${SYNC_DATE}"
 
 mkdir -p $REPO_FOLDER
 /bin/rm -f $REPO_CONF
