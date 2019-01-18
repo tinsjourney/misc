@@ -53,4 +53,11 @@ If you want to put your config file in a different path, you can call the script
 # CONFIG=/media/encrypted_usbkey/config.env /root/rh_reposync.sh
 ```
 
+In order to _update_ an existing repository, set the SYNC_DATE variable
+```
+# date
+Ven 18 jan 2019 10:54:17 CET
+# SYNC_DATE=20190107 ./rh_reposync.sh
+```
+
 :warning:  This script will subscribe your host to Red Hat, so make sure it's not already registered and you have enough subscription. At the end of the script, the host is removed from Red Hat system.
